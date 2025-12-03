@@ -22,7 +22,7 @@
                 
                 <div class="all-todos" v-for="tarefa in tarefas">
                     <div class="single-todo" 
-                    @click="tarefa.feito = !tarefa.feito;"
+                    @click="tarefa.feito = !tarefa.feito; storeTarefas()"
                     :class="{done: tarefa.feito}"
                 >
                         <p>{{tarefa.nome}}</p>
@@ -30,10 +30,10 @@
 
                 </div>
 
-                <button class="clear" @click="limparTudo()">Limpar tudo</button>
+                <button class="clear" @click="limparTudo(); storeTarefas()">Limpar tudo</button>
 
                 <input type="text" placeholder="Escreva uma nova tarefa..." v-model="novaTarefa.nome">
-                <button class="add" @click="adicionarTarefa()" >Adicionar</button>
+                <button class="add" @click="adicionarTarefa(); storeTarefas()" >Adicionar</button>
 
                 <div class="instructions">
                     Instruções:

@@ -26,25 +26,29 @@ const ToDoList = {
         },
 
         limparTudo: function() {
-            if(!(this.tarefas.length === 0)){
-                confirm("Suas tarefas serão apagadas definitivamente")
-                this.tarefas = []
-            } else {
-                alert("Não há tarefas para apagar")
+            if (this.tarefas.length === 0) {
+                alert("Não há tarefas para apagar");
+                return;
+            }
+
+        const querApagar = confirm("Suas tarefas serão apagadas definitivamente");
+
+            if (querApagar) {
+                this.tarefas = [];
+                localStorage.removeItem("tarefas"); // opcional: limpar também do storage
             }
             
         },
         storeTarefas() {
-         //   localStorage.setItem("tarefas", JSON.stringify(this.tarefas));
-          //  console.log("updated")
-          //Desse forma precisa carregar a função em diversos pontos da aplicação
+            localStorage.setItem("tarefas", JSON.stringify(this.tarefas));
+            console.log("updated")
         }
     },
     created() {
         this.tarefas = localStorage.getItem("tarefas") ? JSON.parse(localStorage.getItem("tarefas")) : this.tarefas;
     },
     updated() { 
-        this.tarefas = localStorage.getItem("tarefas") ? JSON.parse(localStorage.getItem("tarefas")) : this.tarefas;
+        // this.tarefas = localStorage.getItem("tarefas") ? JSON.parse(localStorage.getItem("tarefas")) : this.tarefas;
     } //Outra maneira de fazer, melhor para pequenas aplicações como essa.
 }
 
