@@ -35,15 +35,16 @@ const ToDoList = {
             
         },
         storeTarefas() {
-            localStorage.setItem("tarefas", JSON.stringify(this.tarefas));
-            console.log("updated")
+         //   localStorage.setItem("tarefas", JSON.stringify(this.tarefas));
+          //  console.log("updated")
+          //Desse forma precisa carregar a função em diversos pontos da aplicação
         }
     },
     created() {
         this.tarefas = localStorage.getItem("tarefas") ? JSON.parse(localStorage.getItem("tarefas")) : this.tarefas;
     },
     updated() { 
-        // this.tarefas = localStorage.getItem("tarefas") ? JSON.parse(localStorage.getItem("tarefas")) : this.tarefas;
+        this.tarefas = localStorage.getItem("tarefas") ? JSON.parse(localStorage.getItem("tarefas")) : this.tarefas;
     } //Outra maneira de fazer, melhor para pequenas aplicações como essa.
 }
 
